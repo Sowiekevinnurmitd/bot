@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %} Chatbot  {% endblock %}
+
+{% block content %}
+
+
+<h1>Chatbot zum Produktentwicklungsprozess</h1>
+
+<div class="boxeins">
+    <div class="boxzwei">
+
+        <div id="chatbox">
+
+          <p class="botText">
+             Chatbot: <br> Guten Tag, gerne beantworte ich Ihre Fragen zum Prozess der Produktentwicklung
+          </p>
+        </div>
+    </div>
+        <div id="userInput">
+          <input id="textInput" type="text" name="msg" placeholder="Stellen Sie mir eine Frage zum Produktentwicklungsprozess" />
+<!--        <button id="button" type="submit" class="btn btn-primary">Senden</button>-->
+        </div>
+
+</div>
+
+
+<script>
+    function getBotResponse() {
+  var rawText = $("#textInput").val();
+  var userHtml = '<p class="botText darker"> Sie: <br>' + rawText + '</p>';
+  $("#inp").val("");
+  $("#chatbox").append(userHtml);
+  document
+    .getElementById("userInput")
+    .scrollIntoView({ block: "end", behavior: "smooth" })
+  $.get("/process", { msg: rawText }).done(function(answer) {
+    var botHtml = '<p class="botText"> Chatbot:<br>' + answer + '</p>';
+    $("#chatbox").append(botHtml);
+    document
+      .getElementById("userInput")
+      .scrollIntoView({ block: "end", behavior: "smooth" })
+       });
+    }
+  $("#textInput").keypress(function(e) {
+  if (e.which == 13) {
+    getBotResponse();
+  }
+
+
+
+});
+
+</script>
+{% endblock %}
