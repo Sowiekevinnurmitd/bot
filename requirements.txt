@@ -1,5 +1,5 @@
 FLASK 
 Werkzeug 
 numpy == 1.16.6
-tensorflow == 1.4
+tensorflow == 1.4.0
 tflearn == 0.3.2
