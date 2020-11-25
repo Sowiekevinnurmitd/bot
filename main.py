@@ -114,27 +114,6 @@ def bag_of_words(s, words):
     return numpy.array(bag)
 
 
-# def chat():
-#     print("Sie können nun mit dem Chatbot schreiben. Um den Chat zu unterbrechen schreiben Sie 'stop'!")
-#     while True:
-#         inp = input("Du: ")
-#         if inp.lower() == "stop":
-#             break
-#
-#         results = model.predict([bag_of_words(inp, words)])[0]
-#         results_index = numpy.argmax(results)
-#         tag = labels[results_index]
-#
-#         if results[results_index] > 0.8:
-#             for tg in data["intents"]:
-#                 if tg['tag'] == tag:
-#                     responses = tg['responses']
-#
-#             print("Chatbot:", random.choice(responses))
-#
-#         else:
-#             print("Es tut mir leid, ich habe Ihre Frage nicht verstanden. Versuchen Sie es bitte noch einmal.")
-
 @app.route("/")
 def index():
     return render_template("chatbot.html")
