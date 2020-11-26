@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import nltk
+nltk.download('punkt')
 
 from nltk.stem.lancaster import LancasterStemmer
 
@@ -13,7 +14,7 @@ import pickle
 import json
 import random
 
-with open("intents_PE") as file:
+with open("intents.json") as file:
     data = json.load(file)
 
 #print(data)
@@ -85,7 +86,7 @@ net = tflearn.regression(net)  #
 model = tflearn.DNN(net)  # trains the model
 
 
-model.fit(training, output, n_epoch=10000, batch_size=8, show_metric=True)  # pass all training data , epochs: amount of times it sees training data
+model.fit(training, output, n_epoch=1000, batch_size=8, show_metric=True)  # pass all training data , epochs: amount of times it sees training data
 del tf.get_collection_ref(tf.GraphKeys.TRAIN_OP)[:]
 model.save("model.tflearn")
 
